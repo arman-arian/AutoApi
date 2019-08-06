@@ -40,7 +40,7 @@ namespace TServer.Api.Controllers
                 var methodName = service.Name + "Ctor";
                 var dm = new DynamicMethod(methodName, service, Type.EmptyTypes, typeof(Activator), true);
                 var lgen = dm.GetILGenerator();
-                lgen.Emit(OpCodes.Newobj, ctor);
+                lgen.Emit(OpCodes.Newobj, ctor ?? throw new InvalidOperationException());
                 lgen.Emit(OpCodes.Ret);
                 obj = ((Func<object>) dm.CreateDelegate(typeof(Func<object>)))();
             }
@@ -94,7 +94,7 @@ namespace TServer.Api.Controllers
             }
             catch (Exception e)
             {
-                output.Error = e.InnerException == null ? $"Method invoke failed. Error{e.Message}" : e.InnerException.Message;
+                output.Error = e.InnerException == null ? $"Method invoke failed. Error: {e.Message}" : e.InnerException.Message;
             }
 
             return output;
