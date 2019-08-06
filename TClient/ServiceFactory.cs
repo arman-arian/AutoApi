@@ -36,8 +36,9 @@ namespace TClient
                 {
                     return (T)((JArray)resultModel.Result).ToObject(typeof(T));
                 }
-                 
-                return (T)Convert.ChangeType(resultModel.Result, Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T));
+
+                var outParamType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+                return (T)Convert.ChangeType(resultModel.Result, outParamType);
             }
             throw new Exception(resultModel.Error);
         }

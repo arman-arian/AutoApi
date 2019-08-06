@@ -78,7 +78,8 @@ namespace TServer.Api.Controllers
                     }
                     else if (inputParamType != methodParamType)
                     {
-                        inputs.Parameters[i] = Convert.ChangeType(inputs.Parameters[i], methodParamType);
+                        var paramType = Nullable.GetUnderlyingType(methodParamType) ?? methodParamType;
+                        inputs.Parameters[i] = Convert.ChangeType(inputs.Parameters[i], paramType);
                     }
                 }
             }
