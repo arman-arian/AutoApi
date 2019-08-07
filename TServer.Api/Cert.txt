@@ -1,0 +1,1 @@
+﻿makecert.exe -n "CN=Development CA" -r -sv PerCA.pvk PerCA.cer

@@ -80,11 +80,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cert.txt" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BasicAuthenticationAttribute.cs" />
+    <Compile Include="App_Start\RequireHttpsAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ServiceBusController.cs" />
     <Compile Include="Global.asax.cs">

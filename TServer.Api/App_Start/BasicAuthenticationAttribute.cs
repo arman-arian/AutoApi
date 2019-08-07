@@ -6,7 +6,7 @@ using System.Threading;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace Service.Api
+namespace TServer.Api
 {
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {

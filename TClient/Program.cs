@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using TModel;
 
 namespace TClient
 {
-    class Program
+    [SuppressMessage("ReSharper", "UnusedVariable")]
+    internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             Test0();
             Test1();
@@ -18,8 +17,6 @@ namespace TClient
             Test5();
             Test6();
             Test7();
-
-
         }
 
         private static void Test0()
@@ -39,20 +36,20 @@ namespace TClient
 
         private static void Test3()
         {
-            //var result2 = ServiceFactory.CallMethod<string>("AccountService", "CreateAccount", new AccountDto
-            //{
-            //    Balance = 26000,
-            //    BranchId = 1
-            //});
+            var result2 = ServiceFactory.CallMethod<string>("AccountService", "CreateAccount", new AccountDto
+            {
+                Balance = 26000,
+                BranchId = 1
+            });
         }
 
         private static void Test4()
         {
-            //var result2d = ServiceFactory.CallMethod<AccountDto>("AccountService", "CreateAccount2", new AccountDto
-            //{
-            //    Balance = 26000,
-            //    BranchId = 1
-            //});
+            var result2d = ServiceFactory.CallMethod<AccountDto>("AccountService", "CreateAccount2", new AccountDto
+            {
+                Balance = 26000,
+                BranchId = 1
+            });
         }
 
         private static void Test5()

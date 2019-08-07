@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using Service.Api;
 
 namespace TServer.Api
 {
@@ -9,6 +8,7 @@ namespace TServer.Api
         {
             config.MapHttpAttributeRoutes();
 
+            config.Filters.Add(new RequireHttpsAttribute());
             config.Filters.Add(new BasicAuthenticationAttribute());
 
             config.Routes.MapHttpRoute(
