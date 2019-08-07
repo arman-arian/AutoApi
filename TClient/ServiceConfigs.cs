@@ -2,7 +2,7 @@
 {
     public static class ServiceConfigs
     {
-        public static string ServiceUri = "http://localhost:57527/Api/ServiceBus/";
+        public static string ServiceUri = "https://localhost:44396/Api/ServiceBus/";
 
         public static string Username = "Test";
 

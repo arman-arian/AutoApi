@@ -18,8 +18,13 @@ namespace TServer.Api.Controllers
             //TODO: LOG
 
             var output = new MethodOutput();
+            if (inputs == null)
+            {
+                output.Error = "Inputs not found.";
+                return output;
+            }
 
-            var service = Type.GetType("TApplication" + inputs.ServiceName + ", TApplication");
+            var service = Type.GetType("TApplication." + inputs.ServiceName + ", TApplication");
             if (service == null)
             {
                 output.Error = "Service not found.";
