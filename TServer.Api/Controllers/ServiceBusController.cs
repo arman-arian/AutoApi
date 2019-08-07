@@ -19,7 +19,7 @@ namespace TServer.Api.Controllers
 
             var output = new MethodOutput();
 
-            var service = Type.GetType("Service.ApplicationServices2.Services." + inputs.ServiceName + ", Service.ApplicationServices2");
+            var service = Type.GetType("TApplication" + inputs.ServiceName + ", TApplication");
             if (service == null)
             {
                 output.Error = "Service not found.";

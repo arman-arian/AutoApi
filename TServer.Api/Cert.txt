@@ -1,1 +1,8 @@
-﻿makecert.exe -n "CN=Development CA" -r -sv PerCA.pvk PerCA.cer
+﻿Windows 10 SDK
+https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk
+
+C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64
+
+Run CMD as Administrator	
+
+makecert.exe -n "CN=Development CA" -r -sv PerCA.pvk PerCA.cer

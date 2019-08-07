@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44396</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -105,6 +105,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\TApplication\TApplication.csproj">
+      <Project>{b101bdd7-2d55-49cf-9691-338a0251c011}</Project>
+      <Name>TApplication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TModel\TModel.csproj">
       <Project>{4fde54a5-5114-4632-be80-107d0b3091de}</Project>
       <Name>TModel</Name>
