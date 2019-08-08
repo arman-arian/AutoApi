@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Net.Http;
 using System.Web;
 using Newtonsoft.Json.Linq;
 using TServer.Api.Model;
@@ -57,5 +58,14 @@ namespace TServer.Api.Helper
         //    var ret = JsonConvert.DeserializeObject<MethodTokenInfo>(JObject.Parse(messageProperties)["Token"].Value<string>());
         //    return ret;
         //}
+
+        public static string GetClientIp()
+        {
+            var request = HttpContext.Current?.Request;
+            if (request == null)
+                return string.Empty;
+
+            return request.UserHostAddress;
+        }
     }
 }

@@ -114,6 +114,10 @@
       <Project>{4fde54a5-5114-4632-be80-107d0b3091de}</Project>
       <Name>TModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TServer.Api.Helper\TServer.Api.Helper.csproj">
+      <Project>{1EE4F55F-932F-4EB5-BABF-24D38BC87750}</Project>
+      <Name>TServer.Api.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TServer.Api.Model\TServer.Api.Model.csproj">
       <Project>{373c9ae0-91f4-4636-a9f3-42c093c62098}</Project>
       <Name>TServer.Api.Model</Name>

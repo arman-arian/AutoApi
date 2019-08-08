@@ -2,6 +2,7 @@
 using System.Reflection.Emit;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
+using TServer.Api.Helper;
 using TServer.Api.Model;
 
 namespace TServer.Api.Controllers
@@ -16,6 +17,8 @@ namespace TServer.Api.Controllers
         private MethodOutput CallMethodInternal(MethodInput inputs)
         {
             //TODO: LOG
+
+            var ret =  ApiHelper.GetClientIp();
 
             var output = new MethodOutput();
             if (inputs == null)
