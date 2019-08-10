@@ -1,5 +1,6 @@
 ﻿using System;
 using TModel;
+using TServer.Api.Helper;
 
 namespace TApplication
 {
@@ -7,7 +8,7 @@ namespace TApplication
     {
         public void Do()
         {
-            
+            var payload = ApiHelper.GetTokenPayload();
         }
 
         public decimal GetBalance(int branchId, string accountCode)

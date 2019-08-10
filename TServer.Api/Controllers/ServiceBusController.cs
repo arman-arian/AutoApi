@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection.Emit;
 using System.Web.Http;
-using JWT;
-using JWT.Serializers;
 using Newtonsoft.Json.Linq;
 using TServer.Api.Helper;
 using TServer.Api.Model;
@@ -16,7 +15,7 @@ namespace TServer.Api.Controllers
              return CallMethodInternal(value);
         }
 
-        private MethodOutput CallMethodInternal(MethodInput inputs)
+        private static MethodOutput CallMethodInternal(MethodInput inputs)
         {
             //TODO: LOG
 
@@ -27,14 +26,14 @@ namespace TServer.Api.Controllers
                 return output;
             }
 
-            var isTokenValid = ApiHelper.ValidateToken();
-            if (isTokenValid == false)
+            if(ServiceConfigs.TokenIgnoreList.Contains($"{inputs.ServiceName}.{inputs.MethodName}") == false &&
+               ApiHelper.ValidateToken() == false)
             {
                 output.Error = "Token is not valid.";
                 return output;
             }
 
-            var service = Type.GetType("TApplication." + inputs.ServiceName + ", TApplication");
+            var service = Type.GetType($"{ServiceConfigs.Namespace}.{inputs.ServiceName}, {ServiceConfigs.AssemblyName}");
             if (service == null)
             {
                 output.Error = "Service not found.";
