@@ -1,16 +1,37 @@
-﻿using System.IO;
-using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Web;
 using Newtonsoft.Json.Linq;
-using TServer.Api.Model;
 
 namespace TServer.Api.Helper
 {
     public static class ApiHelper
     {
+        public static bool ValidateToken()
+        {
+            var token = GetToken();
+            if (string.IsNullOrEmpty(token))
+                return false;
+
+            if (TokenHelper.Decode(token) == null)
+                return false;
+
+            return true;
+        }
+
+        public static IDictionary<string, object> GetTokenPayload()
+        {
+            var token = GetToken();
+            if (string.IsNullOrEmpty(token))
+                return null;
+
+            var tokenObj = TokenHelper.Decode(token);
+            return tokenObj;
+        }
+
         private static string GetToken()
         {
-            var stream = HttpContext.Current?.Request?.InputStream;
+            var stream = HttpContext.Current?.Request.InputStream;
             if (stream == null)
                 return string.Empty;
 
@@ -22,42 +43,6 @@ namespace TServer.Api.Helper
 
             return JObject.Parse(messageProperties)["Token"].Value<string>();
         }
-
-        public static int GetCurrentUserId()
-        {
-            return GetClientContext().PerCode;
-        }
-
-        public static int GetCurrentOrganCode()
-        {
-            return GetClientContext().OrganCode;
-        }
-
-        public static ClientContextDto GetClientContext()
-        {
-            var token = GetToken();
-            if (token.Contains(",") == false)
-                return new ClientContextDto(9999, 1);
-
-            var context = token.Split(',');
-            if(context.Length > 2)
-                return new ClientContextDto(9999, 1);
-
-            if(int.TryParse(context[1], out var perCode) == false)
-                return new ClientContextDto(9999, 1);
-
-            if (int.TryParse(context[0], out var organCode) == false)
-                return new ClientContextDto(9999, 1);
-
-            return new ClientContextDto(perCode, organCode);
-        }
-
-        //public static MethodTokenInfo GetMethodToken()
-        //{
-        //    var messageProperties = new System.IO.StreamReader(HttpContext.Current.Request.InputStream).ReadToEnd();
-        //    var ret = JsonConvert.DeserializeObject<MethodTokenInfo>(JObject.Parse(messageProperties)["Token"].Value<string>());
-        //    return ret;
-        //}
 
         public static string GetClientIp()
         {

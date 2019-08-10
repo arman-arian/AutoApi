@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reflection.Emit;
 using System.Web.Http;
+using JWT;
+using JWT.Serializers;
 using Newtonsoft.Json.Linq;
 using TServer.Api.Helper;
 using TServer.Api.Model;
@@ -18,12 +20,17 @@ namespace TServer.Api.Controllers
         {
             //TODO: LOG
 
-            var ret =  ApiHelper.GetClientIp();
-
             var output = new MethodOutput();
             if (inputs == null)
             {
                 output.Error = "Inputs not found.";
+                return output;
+            }
+
+            var isTokenValid = ApiHelper.ValidateToken();
+            if (isTokenValid == false)
+            {
+                output.Error = "Token is not valid.";
                 return output;
             }
 

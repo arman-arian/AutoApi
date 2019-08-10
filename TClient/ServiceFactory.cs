@@ -67,7 +67,6 @@ namespace TClient
             var myParameters = JsonConvert.SerializeObject(inputs);
             var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(ServiceConfigs.Username + ":" + ServiceConfigs.Password));
 
-            
             using (var wc = new WebClient())
             {
                 wc.Encoding = Encoding.UTF8;

@@ -18,9 +18,10 @@
             Token = token;
         }
 
-        public static void SetClientContext(int organCode, int perCode)
+        // SetClientContext
+        public static void SetToken(string token)
         {
-            Token = $"{organCode},{perCode}";
+            Token = token;
         }
     }
 }

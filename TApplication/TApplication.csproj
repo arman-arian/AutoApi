@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JWT, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JWT.5.2.2\lib\net472\JWT.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -45,15 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TModel\TModel.csproj">
       <Project>{4fde54a5-5114-4632-be80-107d0b3091de}</Project>
       <Name>TModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TServer.Api.Helper\TServer.Api.Helper.csproj">
+      <Project>{1ee4f55f-932f-4eb5-babf-24d38bc87750}</Project>
+      <Name>TServer.Api.Helper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

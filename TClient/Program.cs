@@ -9,6 +9,14 @@ namespace TClient
     {
         private static void Main()
         {
+            var result = ServiceFactory.CallMethod<LoginOutputs>("LoginService", "Login", new LoginInputs
+            {
+                Username = "Arman",
+                Password = "332332"
+            });
+
+            ServiceConfigs.SetToken(result.Token);
+
             Test0();
             Test1();
             Test2();
